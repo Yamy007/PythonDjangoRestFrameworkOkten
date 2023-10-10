@@ -34,12 +34,20 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
+
+    # my_apps
+    'apps.car',
+    'apps.carPark',
+    'apps.user',
+    # core
+    'core'
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
- 
+
 ]
 
 ROOT_URLCONF = 'DjangoRestFramework.urls'
@@ -70,10 +78,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'oktendb',
-        'USER':'user',
-        'PASSWORD':'user',
-        'HOST':'localhost',
-        'PORT':3306
+        'USER': 'user',
+        'PASSWORD': 'user',
+        'HOST': 'localhost',
+        'PORT': 3306
     }
 }
 
