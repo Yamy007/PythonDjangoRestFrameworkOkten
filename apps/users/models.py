@@ -1,12 +1,28 @@
 from django.db import models
-from core.models import CoreModel
-from core.enum.validate import Validate
-from django.core import validators as V
-
-
-class UserModel(CoreModel):
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from core.models import CoreModel 
+from .manager import UserManager
+from django.core import validators 
+from core.enum.validate import Validate 
+class UserProfileModel(CoreModel):
     class Meta:
-        db_table = 'users'
-    name = models.CharField(max_length=30, validators=[V.RegexValidator(*Validate.NameUser.value)])
-    age = models.IntegerField(validators=[V.MinValueValidator(18), V.MaxValueValidator(65)])
-    
+        db_table = 'user_profile'
+    name = models.CharField(max_length=25, validators=[validators.RegexValidator(*Validate.NameUser.value)]) 
+    surname = models.CharField(max_length=25, validators=[validators.RegexValidator(*Validate.NameUser.value)])
+    age = models.IntegerField(validators=[validators.MinValueValidator(18), validators.MaxValueValidator(100)])
+
+class UserModel(AbstractBaseUser, PermissionsMixin, CoreModel):
+    class Meta:
+        db_table = 'auth_user'
+    email = models.EmailField(unique=True)
+    password = models.CharField(max_length=128)
+
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=False)
+
+    profile = models.OneToOneField(UserProfileModel, on_delete=models.CASCADE, related_name='user', null=True )    
+
+    USERNAME_FIELD = 'email'
+
+    objects = UserManager() 

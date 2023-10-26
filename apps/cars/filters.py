@@ -14,10 +14,10 @@ class CarFilter(filters.FilterSet):
         model = CarModel
         fields = {
             'year': ('lt', 'lte', 'gte', 'gt'),
-            'countPlace': ('lt', 'lte', 'gte', 'gt'),
+            'count_place': ('lt', 'lte', 'gte', 'gt'),
             'eugenie': ('lt', 'lte', 'gte', 'gt'),
             'brand': ('startswith', 'endswith', 'contains'),
-            'typeCar': ('startswith', 'endswith', 'contains'),
+            'type_car': ('startswith', 'endswith', 'contains'),
             
         }
 

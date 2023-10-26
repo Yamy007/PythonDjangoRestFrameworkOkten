@@ -1,8 +1,6 @@
-from django.urls import path,include
-from .views import ListCreateUser, RetrieveUpdateDestroyUser
-
+from django.urls import path
+from .views import CreateUserProfile
 urlpatterns = [
-    path('user', ListCreateUser.as_view()),
-    path('user/<int:pk>', RetrieveUpdateDestroyUser.as_view()),
+    path('user/create', CreateUserProfile.as_view()),
 
 ]

@@ -20,5 +20,6 @@ from django.urls import path,include
 urlpatterns = [
     path('api/', include('apps.cars.urls')),
     path('api/', include('apps.auto_parks.urls')),
-    path('api/', include('apps.users.urls'))
+    path('api/', include('apps.auth.urls')),
+    path('api/', include('apps.users.urls')),
 ]

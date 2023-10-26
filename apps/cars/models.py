@@ -12,7 +12,7 @@ class CarChoiceType(models.TextChoices):
     Sedan = 'Sedan',
     Coupe = 'Coupe',
     Jeep = 'Jeep'
-
+    
     
 class CarModel(CoreModel):
     
@@ -21,8 +21,8 @@ class CarModel(CoreModel):
 
     brand = models.CharField(max_length=20, validators=[V.RegexValidator(*Validate.BrandCar.value)])
     year = models.IntegerField(validators=[V.MinValueValidator(1900), V.MaxValueValidator(datetime.now().year)])
-    typeCar = models.CharField(max_length=12, choices=CarChoiceType.choices)
-    countPlace = models.IntegerField(validators=[V.MinValueValidator(2), V.MaxValueValidator(200)])
+    type_car = models.CharField(max_length=12, choices=CarChoiceType.choices)
+    count_place = models.IntegerField(validators=[V.MinValueValidator(2), V.MaxValueValidator(200)])
     eugenie = models.FloatField(validators=[V.MinValueValidator(2), V.MaxValueValidator(20)])
     auto_park = models.ForeignKey(AutoParkModel, on_delete=models.CASCADE, related_name='cars')
 

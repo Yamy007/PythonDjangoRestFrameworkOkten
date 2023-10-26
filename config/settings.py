@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from .extra_conf.rest_conf import * 
+from .extra_conf import * 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,11 +30,15 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+AUTH_USER_MODEL = 'users.UserModel'
+
 INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.staticfiles',
     'django_filters',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
 
 
     #core 
@@ -43,7 +47,8 @@ INSTALLED_APPS = [
     #my_apps
     'apps.cars',
     'apps.auto_parks',
-    'apps.users'
+    'apps.users',
+    'apps.auth'
 ]
 
 MIDDLEWARE = [
